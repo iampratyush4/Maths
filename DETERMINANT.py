@@ -32,14 +32,35 @@ def calculate_determinant(matrix):
     return determinant
 
 
-# Example usage
-try:
-    matrix = [
-        [2, 3, 1],
-        [4, 5, 6],
-        [7, 8, 9]
-    ]
-    det = calculate_determinant(matrix)
-    print(f"The determinant of the matrix is: {det}")
-except ValueError as e:
-    print(f"Error: {e}")
+def get_user_matrix():
+    """
+    Function to take matrix input from the user.
+    :return: 2D list representing the matrix
+    """
+    try:
+        n = int(input("Enter the order of the square matrix (e.g., 3 for 3x3): "))
+        if n <= 0:
+            raise ValueError("Matrix order must be a positive integer.")
+
+        print(f"Enter the matrix row by row (separate elements with spaces):")
+        matrix = []
+        for i in range(n):
+            row = list(map(float, input(f"Row {i + 1}: ").split()))
+            if len(row) != n:
+                raise ValueError(f"Each row must have exactly {n} elements.")
+            matrix.append(row)
+        return matrix
+    except ValueError as e:
+        print(f"Invalid input: {e}")
+        return None
+
+
+# Main Program
+if __name__ == "__main__":
+    user_matrix = get_user_matrix()
+    if user_matrix:
+        try:
+            det = calculate_determinant(user_matrix)
+            print(f"The determinant of the matrix is: {det}")
+        except ValueError as e:
+            print(f"Error: {e}")
