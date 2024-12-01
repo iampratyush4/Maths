@@ -55,7 +55,7 @@ def get_user_matrix():
         return None
 
 
-# Main Program
+# Main Program for the code
 if __name__ == "__main__":
     user_matrix = get_user_matrix()
     if user_matrix:
